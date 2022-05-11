@@ -9,7 +9,7 @@ class Usertable extends Component{
     render(){
         return(
         <>
-        <table>
+        <table className='customers'>
             <thead>
             <tr>
                 <td>id</td>

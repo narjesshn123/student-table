@@ -2,6 +2,7 @@ import  './Usertable.css';
 import { Component } from "react"         
 import Users from './Users';
 
+
 class Usertable extends Component{
   state={
       Users:Users
@@ -17,7 +18,8 @@ class Usertable extends Component{
                 <td>lastName</td>
                 <td>career</td>
                 <td>
-                <button onClick={this.handleAdd}>add</button>
+                <button onClick={this.handleAdd}>add
+                </button>
                 </td>
             </tr>
             </thead>

@@ -16,15 +16,22 @@ class Usertable extends Component{
                 <td>name</td>
                 <td>lastName</td>
                 <td>career</td>
+                <td>
+                <button onClick={this.handleAdd}>add</button>
+                </td>
             </tr>
             </thead>
             <tbody>
-                {Users.map((user, index)=>(
+                {this.state.Users.map((user,index)=>(
                     <tr key={index}>
                     <td>{user.id}</td>
                     <td>{user.name}</td>
                     <td>{user.lastName}</td>
                     <td>{user.career}</td>
+                    <td>
+                <button onClick={()=>this.handleDelete(user.id)}>delete</button>
+                <button onClick={()=>this.handleUpdate(user)}>update</button>
+                </td>
                     </tr>
                     
                ))}
@@ -33,6 +40,31 @@ class Usertable extends Component{
         </table>
         </>)
     }
+
+    handleUpdate = (olduser)=>{
+        const name = prompt("enter user name",olduser.name)
+        const lastName = prompt("enter user status", olduser.lastName)
+        const career = prompt("enter user email", olduser.career) 
+        this.setState({Users: this.state.Users.map((user)=>
+        user.id === olduser.id ?
+        {...olduser, name, lastName, career}
+        :user)})
+      }
+
+
+      handleDelete = (id)=>{
+          this.setState({Users: this.state.Users.filter(user=>
+              user.id !==id
+          )})
+      }
+
+
+      handleAdd=()=>{
+          const name = prompt("please enter your name")
+          const lastName = prompt("please enter your lastName")
+          const career = prompt("please enter your career")
+          this.setState({Users: [...this.state.Users, {id:Math.floor(Math.random()*20), name, lastName, career}]})
+      }
 }
   
 //   class Usertable extends Component{
@@ -49,15 +81,15 @@ class Usertable extends Component{
 //           const email = prompt("enter user email")
 //           this.setState({users:[...this.state.users,{id:Math.round(Math.random()*1000), name, status, email}]})
 //       }
-//       handleUpdateUser = (olduser)=>{
-//         const name = prompt("enter user name",olduser.name)
-//         const status = prompt("enter user status", olduser.status)
-//         const email = prompt("enter user email", olduser.email) 
-//         this.setState({users: this.state.users.map(user=>
-//         user.id===olduser.id ?
-//         {...olduser, name, status, email}
-//         :user)})
-//       }
+    //   handleUpdateUser = (olduser)=>{
+    //     const name = prompt("enter user name",olduser.name)
+    //     const status = prompt("enter user status", olduser.status)
+    //     const email = prompt("enter user email", olduser.email) 
+    //     this.setState({users: this.state.users.map(user=>
+    //     user.id===olduser.id ?
+    //     {...olduser, name, status, email}
+    //     :user)})
+    //   }
 //       render(){
 //           return(
 //               <div>
